@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_time.c                                         :+:      :+:    :+:   */
+/*   message.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/19 16:19:34 by tjamis            #+#    #+#             */
-/*   Updated: 2022/01/19 16:19:35 by tjamis           ###   ########.fr       */
+/*   Created: 2022/01/19 16:19:23 by tjamis            #+#    #+#             */
+/*   Updated: 2022/01/19 16:54:06 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-unsigned int	get_time(void)
+void	message(t_philo *philo, char *msg)
 {
-	struct timeval	current_time;
-
-	gettimeofday(&current_time, NULL);
-	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
+	pthread_mutex_lock(&philo->data->message);
+	printf("%d %d %s\n", get_time() - philo->data->start, philo->num + 1, msg);
+	pthread_mutex_unlock(&philo->data->message);
 }

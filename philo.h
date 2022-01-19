@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/19 16:19:50 by tjamis            #+#    #+#             */
+/*   Updated: 2022/01/19 16:40:10 by tjamis           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
@@ -47,6 +59,6 @@ void			*spectator(void *info_v);
 void			free_all(t_info *info);
 void			*philo_eat(void *philo_v);
 void			init_philo(t_info *info);
-
+void			message(t_philo *philo, char *msg);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/19 16:19:40 by tjamis            #+#    #+#             */
+/*   Updated: 2022/01/19 16:47:31 by tjamis           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int main(int argc, char **argv)
@@ -6,7 +18,7 @@ int main(int argc, char **argv)
 	pthread_t spect;
 	int		i;
 
-	if (argc != 5 && argc != 6 && parsing(argc, argv, &info))
+	if (parsing(argc, argv, &info))
 	{
 		printf("Error: invalid arguments\n");
 		return (1);
