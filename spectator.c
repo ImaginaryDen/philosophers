@@ -6,7 +6,7 @@
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:19:52 by tjamis            #+#    #+#             */
-/*   Updated: 2022/01/19 19:13:06 by tjamis           ###   ########.fr       */
+/*   Updated: 2022/01/19 21:32:05 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	*spectator(void *info_v)
 	i = 0;
 	while (1)
 	{
+		usleep(500);
 		if (i == info->num_philo)
 		{
 			if (info->max_eat != -1 && check_all(info))
@@ -53,7 +54,8 @@ void	*spectator(void *info_v)
 				pthread_mutex_lock(&info->philos[i].eat);
 				continue;
 			}
-			message(&info->philos[i], "is died");
+			pthread_mutex_lock(&info->message);
+			printf("%d %d is died\n", get_time() - info->start, info->philos[i].num + 1);
 			pthread_mutex_unlock(&info->stop);
 			return(0);
 		}
