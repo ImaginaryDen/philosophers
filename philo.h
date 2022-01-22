@@ -42,6 +42,7 @@ typedef struct s_info
 	pthread_mutex_t	forks[256];
 	pthread_mutex_t	message;
 	pthread_mutex_t	stop;
+	int				live;
 	int				start;
 	int				num_philo;
 	int				time_to_die;
@@ -60,5 +61,6 @@ void			free_all(t_info *info);
 void			*philo_eat(void *philo_v);
 void			init_philo(t_info *info);
 void			message(t_philo *philo, char *msg);
+void			ft_usleep(int ms);
 
 #endif

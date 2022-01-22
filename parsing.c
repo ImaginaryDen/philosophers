@@ -31,5 +31,6 @@ int	parsing(int argc, char **argv, t_info *info)
 	info->max_eat = -1;
 	if (argc == 6)
 		info->max_eat = ft_atoi(argv[5]);
+	info->live = 1;
 	return (0);
 }
