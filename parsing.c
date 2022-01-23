@@ -16,6 +16,7 @@ int	parsing(int argc, char **argv, t_info *info)
 {
 	if (argc != 5 && argc != 6)
 		return (1);
+	info->num_philo = 0;
 	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[1]) > 256)
 			return (1);
 	info->num_philo = ft_atoi(argv[1]);
