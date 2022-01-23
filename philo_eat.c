@@ -66,7 +66,6 @@ void *check_death(void *philo_v)
 			printf("%d %d %d %d %d\n", philo->num + 1, philo->data->time_to_die , get_time() - philo->last_meal, philo->eat_count, philo->last_meal - philo->data->start);
 			pthread_mutex_lock(&philo->data->message);
 			printf("%d %d is died\n", get_time() - philo->data->start, philo->num + 1);
-			pthread_mutex_unlock(&philo->data->stop);
 			return (NULL);
 		}
 	}
@@ -95,4 +94,5 @@ void	*philo_eat(void *philo_v)
 		sleeping(philo);
 		thinking(philo);
 	}
+	return (NULL);
 }

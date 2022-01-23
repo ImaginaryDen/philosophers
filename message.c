@@ -14,9 +14,12 @@
 
 void	message(t_philo *philo, char *msg)
 {
-	if (philo->data->live == 0)
-		return ;
 	pthread_mutex_lock(&philo->data->message);
+	if (philo->data->live == 0)
+	{
+		pthread_mutex_unlock(&philo->data->message);
+		return ;
+	}
 	printf("%d %d %s\n", get_time() - philo->data->start, philo->num + 1, msg);
 	pthread_mutex_unlock(&philo->data->message);
 }

@@ -37,11 +37,10 @@ typedef struct s_philo
 
 typedef struct s_info
 {
-	struct s_philo	philos[256];
-	pthread_t		threads[256];
-	pthread_mutex_t	forks[256];
+	struct s_philo	*philos;
+	pthread_t		*threads;
+	pthread_mutex_t	*forks;
 	pthread_mutex_t	message;
-	pthread_mutex_t	stop;
 	int				live;
 	int				start;
 	int				num_philo;
@@ -59,7 +58,7 @@ int				init_mutex(t_info *info);
 void			*spectator(void *info_v);
 void			free_all(t_info *info);
 void			*philo_eat(void *philo_v);
-void			init_philo(t_info *info);
+int				init_philo(t_info *info);
 void			message(t_philo *philo, char *msg);
 void			ft_usleep(int ms);
 

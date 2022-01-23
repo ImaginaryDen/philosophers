@@ -12,11 +12,14 @@
 
 #include "philo.h"
 
-void	init_philo(t_info *info)
+int	init_philo(t_info *info)
 {
 	int i;
 
 	i = 0;
+	info->philos = malloc(sizeof(t_philo) * info->num_philo);
+	if (info->philos == NULL)
+		return (1);
 	while (i < info->num_philo)
 	{
 		info->philos[i].data = info;
@@ -28,4 +31,5 @@ void	init_philo(t_info *info)
 		info->philos[i].hand_l = (i + 1) % info->num_philo;
 		i++;
 	}
+	return (0);
 }

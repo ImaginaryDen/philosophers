@@ -24,17 +24,19 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	info.start = get_time();
-	init_mutex(&info);
-	init_philo(&info);
-	pthread_mutex_lock(&info.stop);
+	if(init_mutex(&info) && init_philo(&info))
+	{
+		printf("Error alloc\n");
+		return (1);
+	}
 	i = 0;
 	while (i < info.num_philo)
 	{
 		pthread_create(info.threads + i, NULL, philo_eat, info.philos + i);
-		pthread_detach(info.threads[i]);
 		i++;
 	}
+	return(1);
 	pthread_create(&spect, NULL, spectator, &info);
-	pthread_mutex_lock(&info.stop);
+	pthread_join(spect, NULL);
 	free_all(&info);
 }

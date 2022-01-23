@@ -18,11 +18,14 @@ void	free_all(t_info *info)
 
 	i = 0;
 	pthread_mutex_destroy(&info->message);
-	pthread_mutex_destroy(&info->stop);
 	while (i < info->num_philo)
 	{
+		pthread_join(info->threads[i], NULL);
 		pthread_mutex_destroy(info->forks + i);
 		pthread_mutex_destroy(&info->philos[i].eat);
 		i++;
 	}
+	free(info->forks);
+	free(info->philos);
+	free(info->threads);
 }
