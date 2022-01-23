@@ -35,7 +35,7 @@ void	*spectator(void *info_v)
 	t_info *info;
 	info = (t_info *)info_v;
 	i = 0;
-	while (1)
+	while (info->live)
 	{
 		if (i == info->num_philo)
 		{
@@ -45,7 +45,6 @@ void	*spectator(void *info_v)
 			i = 0;
 		}
 		pthread_mutex_lock(&info->philos[i].eat);
-		//printf("%d check %d\n", get_time() - info->start, i + 1);
 		if (info->time_to_die <= get_time() - info->philos[i].last_meal && info->philos[i].eat_count)
 		{
 			
@@ -53,8 +52,6 @@ void	*spectator(void *info_v)
 			info->live = 0;
 			printf("%d %d is died\n", get_time() - info->start, info->philos[i].num + 1);
 			pthread_mutex_unlock(&info->message);
-			pthread_mutex_unlock(&info->philos[i].eat);
-			return(0);
 		}
 		pthread_mutex_unlock(&info->philos[i].eat);
 		i++;

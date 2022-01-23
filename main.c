@@ -30,14 +30,6 @@ int main(int argc, char **argv)
 		printf("Error alloc\n");
 		return (1);
 	}
-	if (info.num_philo == 1)
-	{
-		printf("0\t 1 has taken a fork\n");
-		ft_usleep(info.time_to_die);
-		printf("%d\t 1 died\n", info.time_to_die + 1);
-		free_all(&info);
-		return (0);
-	}
 	i = 0;
 	while (i < info.num_philo)
 	{

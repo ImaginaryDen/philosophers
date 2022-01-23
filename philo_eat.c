@@ -18,12 +18,11 @@ void take_fork(t_philo *philo)
 	message(philo, "taken a fork");
 	pthread_mutex_lock(&philo->data->forks[philo->hand_l]);
 	message(philo, "taken a fork");
-
-	pthread_mutex_lock(&philo->eat);
 }
 
 void eating(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->eat);
 	philo->last_meal = get_time();
 	pthread_mutex_unlock(&philo->eat);
 	message(philo, "is eating");
@@ -45,33 +44,6 @@ void	thinking(t_philo *philo)
 	message(philo, "is thinking");
 }
 
-void *check_death(void *philo_v)
-{
-	t_philo *philo;
-	int time_sleep;
-	int time;
-
-	philo = philo_v;
-	while (philo->eat_count && philo->data->live)
-	{
-		time_sleep = philo->eat_time - (get_time() - philo->last_meal);
-		if (time_sleep > 0)
-			ft_usleep(time_sleep);
-		pthread_mutex_lock(&philo->eat);
-		time = philo->last_meal;
-		pthread_mutex_unlock(&philo->eat);
-		if((philo->data->time_to_die + 2 <= get_time() - time) && philo->eat_count)
-		{
-			philo->data->live = 0;
-			printf("%d %d %d %d %d\n", philo->num + 1, philo->data->time_to_die , get_time() - philo->last_meal, philo->eat_count, philo->last_meal - philo->data->start);
-			pthread_mutex_lock(&philo->data->message);
-			printf("%d %d is died\n", get_time() - philo->data->start, philo->num + 1);
-			return (NULL);
-		}
-	}
-	return (NULL);
-}
-
 void	*philo_eat(void *philo_v)
 {
 	t_philo *philo;
@@ -80,8 +52,11 @@ void	*philo_eat(void *philo_v)
 	philo = philo_v;
 	if (philo->num % 2)
 		ft_usleep(10);
-	//pthread_create(&spectr, NULL, check_death, philo);
-	//pthread_detach(spectr);
+	if (philo->data->num_philo == 1)
+	{
+		pthread_mutex_lock(&philo->data->forks[philo->hand_r]);
+		message(philo, "taken a fork");
+	}
 	while (philo->data->live)
 	{
 		if (philo->eat_count == 0)
@@ -89,6 +64,8 @@ void	*philo_eat(void *philo_v)
 			message(philo, "is done");
 			return (0);
 		}
+		if (philo->data->num_philo == 1)
+			continue;
 		take_fork(philo);
 		eating(philo);
 		sleeping(philo);
