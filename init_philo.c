@@ -22,6 +22,7 @@ int	init_philo(t_info *info)
 		return (1);
 	while (i < info->num_philo)
 	{
+		pthread_mutex_init(&info->philos[i].eat, NULL);
 		info->philos[i].data = info;
 		info->philos[i].eat_time = info->time_to_eat;
 		info->philos[i].eat_count = info->max_eat;

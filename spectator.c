@@ -31,10 +31,8 @@ int check_all(t_info *info)
 
 void	*spectator(void *info_v)
 {
-		return (NULL);
 	int	i;
 	t_info *info;
-
 	info = (t_info *)info_v;
 	i = 0;
 	while (1)
