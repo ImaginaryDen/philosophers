@@ -15,9 +15,9 @@
 void take_fork(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->forks[philo->hand_r]);
-	message(philo, "taken a fork");
+	message(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->data->forks[philo->hand_l]);
-	message(philo, "taken a fork");
+	message(philo, "has taken a fork");
 }
 
 void eating(t_philo *philo)
