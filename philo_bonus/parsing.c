@@ -6,7 +6,7 @@
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:19:45 by tjamis            #+#    #+#             */
-/*   Updated: 2022/01/19 18:51:04 by tjamis           ###   ########.fr       */
+/*   Updated: 2022/01/25 15:53:03 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ int	parsing(int argc, char **argv, t_info *info)
 		return (1);
 	info->num_philos = 0;
 	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[1]) > 200)
-			return (1);
+		return (1);
 	info->num_philos = ft_atoi(argv[1]);
 	if (ft_atoi(argv[2]) < 60)
-			return (1);
+		return (1);
 	info->time_to_die = ft_atoi(argv[2]);
 	if (ft_atoi(argv[3]) < 60)
-			return (1);
+		return (1);
 	info->time_to_eat = ft_atoi(argv[3]);
 	if (ft_atoi(argv[4]) < 60)
-			return (1);
+		return (1);
 	info->time_to_sleep = ft_atoi(argv[4]);
 	info->eat_count = -1;
 	if (argc == 6)

@@ -6,7 +6,7 @@
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:19:52 by tjamis            #+#    #+#             */
-/*   Updated: 2022/01/19 21:32:05 by tjamis           ###   ########.fr       */
+/*   Updated: 2022/01/25 15:53:59 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*spectator(void *info_v)
 {
-	t_info *info;
-	int time;
+	t_info	*info;
+	int		time;
 
 	info = info_v;
 	while (info->live)
@@ -26,7 +26,8 @@ void	*spectator(void *info_v)
 		if (info->eat_count == 0)
 			return (NULL);
 		sem_wait(info->eat_sem);
-		if (info->time_to_die + 5 <= get_time() - info->last_meal && info->eat_count)
+		if (info->time_to_die + 5 <= get_time() - info->last_meal
+			&& info->eat_count)
 		{
 			sem_wait(info->write_sem);
 			info->live = 0;
@@ -35,5 +36,5 @@ void	*spectator(void *info_v)
 		}
 		sem_post(info->eat_sem);
 	}
-	return(NULL);
+	return (NULL);
 }

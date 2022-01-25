@@ -3,7 +3,7 @@ NAME = ./philo
 OBJ_DIR = ./objects
 HEADER = philo.h
 
-CFLAGS = -pthread -I./ #-Wall -Wextra -Werror 
+CFLAGS = -pthread -I./ -Wall -Wextra -Werror 
 
 SRC = $(shell ls ./*.c)
 SRC_UTILS = $(shell ls ./utils/*.c)

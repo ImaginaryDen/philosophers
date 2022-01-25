@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/25 15:48:42 by tjamis            #+#    #+#             */
+/*   Updated: 2022/01/25 15:52:04 by tjamis           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	ft_usleep(int ms)
@@ -12,7 +24,7 @@ void	ft_usleep(int ms)
 
 void	free_all(t_info *info)
 {
-	int i;
+	int	i;
 
 	sem_unlink(SEM_FORKS);
 	sem_unlink(SEM_WRITE);
@@ -23,10 +35,10 @@ void	free_all(t_info *info)
 	i = 0;
 	while (i < info->num_philos)
 	{
-		kill(info->pids[i], SIGTERM);;
+		kill(info->pids[i], SIGTERM);
 		i++;
 	}
-	if(info->pids)
+	if (info->pids)
 		free(info->pids);
 }
 

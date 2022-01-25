@@ -6,12 +6,12 @@
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:19:50 by tjamis            #+#    #+#             */
-/*   Updated: 2022/01/19 16:40:10 by tjamis           ###   ########.fr       */
+/*   Updated: 2022/01/25 15:46:54 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILO_H
+# define PHILO_H
 
 # include <stdio.h>
 # include <pthread.h>
@@ -21,7 +21,7 @@
 # include <sys/time.h>
 # include <limits.h>
 
-struct s_info;
+struct	s_info;
 
 typedef struct s_philo
 {
@@ -44,9 +44,9 @@ typedef struct s_info
 	int				live;
 	int				start;
 	int				num_philo;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
+	unsigned int	time_to_die;
+	unsigned int	time_to_eat;
+	unsigned int	time_to_sleep;
 	int				max_eat;
 }				t_info;
 

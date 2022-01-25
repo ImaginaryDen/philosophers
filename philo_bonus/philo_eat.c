@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void take_fork(t_info *info)
+void	take_fork(t_info *info)
 {
 	sem_wait(info->forks);
 	message(info, "has taken a fork");
@@ -20,13 +20,13 @@ void take_fork(t_info *info)
 	message(info, "has taken a fork");
 }
 
-void eating(t_info *info)
+void	eating(t_info *info)
 {
 	sem_wait(info->eat_sem);
 	info->last_meal = get_time();
 	message(info, "is eating");
 	sem_post(info->eat_sem);
-	ft_usleep(info->time_to_eat);	
+	ft_usleep(info->time_to_eat);
 	sem_post(info->forks);
 	sem_post(info->forks);
 	if (info->eat_count != -1)
@@ -44,9 +44,9 @@ void	thinking(t_info *info)
 	message(info, "is thinking");
 }
 
-int		philo_eat(t_info *info)
+int	philo_eat(t_info *info)
 {
-	pthread_t spectr;
+	pthread_t	spectr;
 
 	pthread_create(&spectr, NULL, spectator, info);
 	pthread_detach(spectr);
@@ -54,7 +54,8 @@ int		philo_eat(t_info *info)
 	{
 		sem_wait(info->forks);
 		message(info, "has taken a fork");
-		while (info->live);
+		while (info->live)
+			;
 	}
 	while (info->live)
 	{

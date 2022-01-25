@@ -6,12 +6,12 @@
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:19:50 by tjamis            #+#    #+#             */
-/*   Updated: 2022/01/19 16:40:10 by tjamis           ###   ########.fr       */
+/*   Updated: 2022/01/25 15:48:29 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILO_H
+# define PHILO_H
 
 # include <sys/wait.h>
 # include <sys/types.h>
@@ -35,9 +35,9 @@ typedef struct s_info
 	int				id;
 	pid_t			*pids;
 	int				num_philos;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
+	unsigned int	time_to_die;
+	unsigned int	time_to_eat;
+	unsigned int	time_to_sleep;
 	int				eat_count;
 	int				last_meal;
 	int				start;
